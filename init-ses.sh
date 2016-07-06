@@ -60,6 +60,6 @@ echo "<entry key=\"ext_stopwords\">${USER_PID}/${SES_SRV_ID}/${SES_SRV_ID}_stop.
 chown -R elasticsearch:elasticsearch /${USER_PID}
 ls -l ${confpath}
 #gosu elasticsearch "elasticsearch"
-gosu elasticsearch bash -c "elasticsearch -d -Des.path.conf=${USER_PID}/conf"
+gosu elasticsearch bash -c "elasticsearch -Des.path.conf=${USER_PID}/conf"
 
 
