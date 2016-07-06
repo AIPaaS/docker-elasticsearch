@@ -58,6 +58,7 @@ echo "<entry key=\"ext_stopwords\">${USER_PID}/${SES_SRV_ID}/${SES_SRV_ID}_stop.
 
 # start the elasticsearch 
 chown -R elasticsearch:elasticsearch /${USER_PID}
-gosu elasticsearch "elasticsearch -Des.config=${confpath}"
+gosu elasticsearch "elasticsearch"
+#gosu elasticsearch "elasticsearch -Des.config=${confpath}"
 
 
