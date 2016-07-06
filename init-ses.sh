@@ -57,5 +57,6 @@ echo "<entry key=\"ext_stopwords\">${USER_PID}/${SES_SRV_ID}/${SES_SRV_ID}_stop.
 </properties>" >> $ikpath
 
 # start the elasticsearch 
-elasticsearch
+set -- gosu elasticsearch "elasticsearch"
+exec  "elasticsearch"
 
