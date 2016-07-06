@@ -8,6 +8,7 @@ RUN plugin install mobz/elasticsearch-head
 RUN mkdir  /usr/share/elasticsearch/plugins/ik
 ADD elasticsearch-analysis-ik-1.9.3.zip /usr/share/elasticsearch/plugins/ik/elasticsearch-analysis-ik-1.9.3.zip 
 RUN unzip /usr/share/elasticsearch/plugins/ik/elasticsearch-analysis-ik-1.9.3.zip
+RUN ls -l /usr/share/elasticsearch/plugins/ik
 RUN rm -fr /usr/share/elasticsearch/plugins/ik/elasticsearch-analysis-ik-1.9.3.zip
 RUN ls -l /usr/share/elasticsearch/plugins/ik
 
