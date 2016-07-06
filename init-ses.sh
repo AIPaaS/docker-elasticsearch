@@ -1,5 +1,5 @@
 path=/${USER_PID}
-mkdir -vp $path/{conf,data}
+mkdir -vp $path/{conf}
 confpath=$path/conf/${USER_PID}-${SES_SRV_ID}-${SRV_PORT}.yml
 
 
@@ -13,7 +13,7 @@ echo "cluster.name: ${USER_PID}-${SES_SRV_ID}" >> $confpath
 echo "index.number_of_shards: 5" >> $confpath
 echo "index.number_of_replicas: 1" >> $confpath
 
-echo "path.data: $path/data" >> $confpath
+echo "path.data: /usr/share/elasticsearch/data" >> $confpath
 
 echo "network.bind_host: ${SRV_HOST}" >> $confpath
 echo "network.publish_host: ${SRV_HOST}" >> $confpath
@@ -40,7 +40,7 @@ echo "          use_smart: false" >> $confpath
 echo "      ik_smart:" >> $confpath
 echo "          type: ik" >> $confpath
 echo "          use_smart: true" >> $confpath
-echo "      ik_tt_$1_$6:" >> $confpath
+echo "      ik_tt_${USER_PID}_${SES_SRV_ID}:" >> $confpath
 echo "          type: ik" >> $confpath
 echo "          use_smart: fasle" >> $confpath
 ikfolder=/usr/share/elasticsearch/config/ik/${USER_PID}/${SES_SRV_ID}
@@ -57,6 +57,7 @@ echo "<entry key=\"ext_stopwords\">${USER_PID}/${SES_SRV_ID}/${SES_SRV_ID}_stop.
 </properties>" >> $ikpath
 
 # start the elasticsearch 
-set -- gosu elasticsearch "elasticsearch"
-exec  "elasticsearch"
+chown -R elasticsearch:elasticsearch /${USER_PID}
+gosu elasticsearch "elasticsearch -Des.config=${confpath}"
+
 
