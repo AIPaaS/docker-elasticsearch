@@ -15,5 +15,5 @@ RUN chmod +x /init-ses.sh
 EXPOSE 9200 9300
 ENV PATH /init-ses.sh:$PATH
 
-CMD ["init-ses.sh"]
+CMD ["/init-ses.sh"]
 #CMD ["elasticsearch"]
