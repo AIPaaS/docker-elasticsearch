@@ -15,11 +15,11 @@ echo "index.number_of_replicas: 1" >> $confpath
 
 echo "path.data: $path/data" >> $confpath
 
-echo "network.bind_host: $3" >> $confpath
-echo "network.publish_host: $3" >> $confpath
-echo "network.host: $3" >> $confpath
-echo "transport.tcp.port: $4" >> $confpath
-echo "http.port: $5" >> $confpath
+echo "network.bind_host: ${SRV_HOST}" >> $confpath
+echo "network.publish_host: ${SRV_HOST}" >> $confpath
+echo "network.host: ${SRV_HOST}" >> $confpath
+echo "transport.tcp.port: ${SRV_PORT}" >> $confpath
+echo "http.port: ${SRV_HTTP_PORT}" >> $confpath
 echo "index.mapper.dynamic : false" >> $confpath
 echo "threadpool.bulk.type: fixed" >> $confpath
 echo "threadpool.bulk.size: 8" >> $confpath 
@@ -27,7 +27,7 @@ echo "threadpool.bulk.queue_size: 500" >> $confpath
 echo "node.master: true" >> $confpath
 echo "node.data: true" >> $confpath
 echo "discovery.zen.ping.multicast.enabled: false" >> $confpath
-echo "discovery.zen.ping.unicast.hosts: [$7]"  >> $confpath
+echo "discovery.zen.ping.unicast.hosts: [${SES_CLUSTER}]"  >> $confpath
 echo "index:" >> $confpath
 echo "  analysis:" >> $confpath
 echo "    analyzer:" >> $confpath
@@ -43,16 +43,19 @@ echo "          use_smart: true" >> $confpath
 echo "      ik_tt_$1_$6:" >> $confpath
 echo "          type: ik" >> $confpath
 echo "          use_smart: fasle" >> $confpath
-ikfolder=$HOME/elasticsearch-1.7.1/config/ik/$1/$6
+ikfolder=/usr/share/elasticsearch/config/ik/${USER_PID}/${SES_SRV_ID}
 mkdir -vp $ikfolder
 ikpath=$ikfolder/IKAnalyzer.cfg.xml
-> $ikfolder/$6_index.dic
-> $ikfolder/$6_stop.dic
+> $ikfolder/${SES_SRV_ID}_index.dic
+> $ikfolder/${SES_SRV_ID}_stop.dic
 > $ikpath
 echo '<?xml version="1.0" encoding="UTF-8"?>' >> $ikpath
 echo '<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">' >> $ikpath
 echo '<properties>' >> $ikpath
-echo "<entry key=\"ext_dict\">$1/$6/$6_index.dic</entry>" >> $ikpath
-echo "<entry key=\"ext_stopwords\">$1/$6/$6_stop.dic</entry>
+echo "<entry key=\"ext_dict\">${USER_PID}/${SES_SRV_ID}/${SES_SRV_ID}_index.dic</entry>" >> $ikpath
+echo "<entry key=\"ext_stopwords\">${USER_PID}/${SES_SRV_ID}/${SES_SRV_ID}_stop.dic</entry>
 </properties>" >> $ikpath
+
+# start the elasticsearch 
+elasticsearch
 
