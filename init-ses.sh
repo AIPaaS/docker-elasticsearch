@@ -1,5 +1,5 @@
 path=/${USER_PID}
-mkdir -vp $path/{conf}
+mkdir -vp $path/conf
 confpath=$path/conf/${USER_PID}-${SES_SRV_ID}-${SRV_PORT}.yml
 
 
