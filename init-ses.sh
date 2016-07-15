@@ -46,8 +46,8 @@ echo "          use_smart: fasle" >> $confpath
 ikfolder=/usr/share/elasticsearch/config/ik/${USER_PID}/${SES_SRV_ID}
 mkdir -vp $ikfolder
 ikpath=$ikfolder/IKAnalyzer.cfg.xml
-> $ikfolder/${SES_SRV_ID}_index.dic
-> $ikfolder/${SES_SRV_ID}_stop.dic
+#> $ikfolder/${SES_SRV_ID}_index.dic
+#> $ikfolder/${SES_SRV_ID}_stop.dic
 > $ikpath
 echo '<?xml version="1.0" encoding="UTF-8"?>' >> $ikpath
 echo '<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">' >> $ikpath
