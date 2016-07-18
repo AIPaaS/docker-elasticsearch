@@ -61,6 +61,8 @@ chown -R elasticsearch:elasticsearch /${USER_PID}
 cp -f ${confpath} /usr/share/elasticsearch/config/elasticsearch.yml
 ls -l ${confpath}
 mkdir -vp /usr/share/elasticsearch/data/${USER_PID}-${SES_SRV_ID}
+chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data
+ls -l /usr/share/elasticsearch/data
 #gosu elasticsearch "elasticsearch"
 gosu elasticsearch bash -c "elasticsearch"
 
