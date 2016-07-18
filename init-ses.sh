@@ -60,6 +60,7 @@ echo "<entry key=\"ext_stopwords\">${USER_PID}/${SES_SRV_ID}/${SES_SRV_ID}_stop.
 chown -R elasticsearch:elasticsearch /${USER_PID}
 cp -f ${confpath} /usr/share/elasticsearch/config/elasticsearch.yml
 ls -l ${confpath}
+mkdir -vp /usr/share/elasticsearch/data/${USER_PID}-${SES_SRV_ID}
 #gosu elasticsearch "elasticsearch"
 gosu elasticsearch bash -c "elasticsearch"
 
