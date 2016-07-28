@@ -28,21 +28,7 @@ echo "node.master: true" >> $confpath
 echo "node.data: true" >> $confpath
 echo "discovery.zen.ping.multicast.enabled: false" >> $confpath
 echo "discovery.zen.ping.unicast.hosts: [${SES_CLUSTER}]"  >> $confpath
-echo "index:" >> $confpath
-echo "  analysis:" >> $confpath
-echo "    analyzer:" >> $confpath
-echo "      ik:" >> $confpath
-echo "          alias: [ik_analyzer]" >> $confpath
-echo "          type: org.elasticsearch.index.analysis.IkAnalyzerProvider" >> $confpath
-echo "      ik_max_word:" >> $confpath
-echo "          type: ik" >> $confpath
-echo "          use_smart: false" >> $confpath
-echo "      ik_smart:" >> $confpath
-echo "          type: ik" >> $confpath
-echo "          use_smart: true" >> $confpath
-echo "      ik_tt_${USER_PID}_${SES_SRV_ID}:" >> $confpath
-echo "          type: ik" >> $confpath
-echo "          use_smart: fasle" >> $confpath
+
 ikfolder=/usr/share/elasticsearch/config/ik/${USER_PID}/${SES_SRV_ID}
 mkdir -vp $ikfolder
 ikpath=$ikfolder/IKAnalyzer.cfg.xml
