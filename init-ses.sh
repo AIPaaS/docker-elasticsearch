@@ -36,8 +36,8 @@ ikfolder=/usr/share/elasticsearch/plugins/ik/config/ik
 ikpath=$ikfolder/IKAnalyzer.cfg.xml
 
 #append the remote url
-echo "<entry key=\"remote_ext_dict\">${IK_EXT_URL}/dict/extDict</entry>">>$ikpath
-echo "<entry key=\"remote_ext_stopwords\">${IK_EXT_URL}/dict/stopWords</entry>">>$ikpath
+echo "<entry key=\"remote_ext_dict\">${IK_EXT_URL}/dict/ext/${USER_PID}/${SES_SRV_ID}/ext.dict</entry>">>$ikpath
+echo "<entry key=\"remote_ext_stopwords\">${IK_EXT_URL}/dict/stop/${USER_PID}/${SES_SRV_ID}/stop.dict</entry>">>$ikpath
 
 # start the elasticsearch 
 
