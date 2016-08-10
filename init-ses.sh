@@ -31,15 +31,11 @@ echo "node.data: true" >> $confpath
 echo "discovery.zen.ping.multicast.enabled: false" >> $confpath
 echo "discovery.zen.ping.unicast.hosts: [${SES_CLUSTER}]"  >> $confpath
 
-ikfolder=/usr/share/elasticsearch/plugins/ik/config/ik
-
-ikpath=$ikfolder/IKAnalyzer.cfg.xml
-
 ext_dict=$(echo "${IK_EXT_URL}/dict/ext/${USER_PID}/${SES_SRV_ID}/ext.dict" | tr -s / /)
 stop_dict=$(echo "${IK_EXT_URL}/dict/stop/${USER_PID}/${SES_SRV_ID}/stop.dict" | tr -s / /)
 #append the remote url
-sed "/\/properties/i <entry key=\"remote_ext_dict\">${ext_dict}</entry>" $ikpath
-sed "/\/properties/i <entry key=\"remote_ext_stopwords\">${stop_dict}</entry>" $ikpath
+sed -i "/\/properties/i <entry key=\"remote_ext_dict\">${ext_dict}</entry>" /usr/share/elasticsearch/plugins/ik/config/ik/IKAnalyzer.cfg.xml
+sed -i "/\/properties/i <entry key=\"remote_ext_stopwords\">${stop_dict}</entry>" /usr/share/elasticsearch/plugins/ik/config/ik/IKAnalyzer.cfg.xml
 
 # start the elasticsearch 
 
