@@ -32,8 +32,15 @@ echo "discovery.zen.ping.multicast.enabled: false" >> $confpath
 echo "discovery.zen.ping.unicast.hosts: [${SES_CLUSTER}]"  >> $confpath
 
 ikConfig=/usr/share/elasticsearch/plugins/ik/config/ik/IKAnalyzer.cfg.xml
-ext_dict=$(echo "${IK_EXT_URL}/dict/ext/${USER_PID}/${SES_SRV_ID}/ext-dict" | tr -s / /)
-stop_dict=$(echo "${IK_EXT_URL}/dict/stop/${USER_PID}/${SES_SRV_ID}/stop-sdict" | tr -s / /)
+ik_ext_url=${IK_EXT_URL}
+last_char=${IK_EXT_URL: -1}
+#judge 
+if [[ "$last_char" == "/" ]]; then
+    ik_ext_url=${IK_EXT_URL%?}
+fi
+	
+ext_dict=$(echo "${ik_ext_url}/dict/ext/${USER_PID}/${SES_SRV_ID}/ext-dict" )
+stop_dict=$(echo "${ik_ext_url}/dict/stop/${USER_PID}/${SES_SRV_ID}/stop-sdict")
 #append the remote url
 sed -i -e "s@___ext_dict___@${ext_dict}@g" $ikConfig
 sed -i -e "s@___stop_dict___@${stop_dict}@g" $ikConfig
