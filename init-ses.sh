@@ -30,8 +30,8 @@ echo "node.master: true" >> $confpath
 echo "node.data: true" >> $confpath
 echo "discovery.zen.ping.multicast.enabled: false" >> $confpath
 echo "discovery.zen.ping.unicast.hosts: [${SES_CLUSTER}]"  >> $confpath
-
-ikConfig=/usr/share/elasticsearch/plugins/ik/config/ik/IKAnalyzer.cfg.xml
+		
+ikConfig=/usr/share/elasticsearch/plugins/ik/config/IKAnalyzer.cfg.xml
 ik_ext_url=${IK_EXT_URL}
 last_char=${IK_EXT_URL: -1}
 #judge 
