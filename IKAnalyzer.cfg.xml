@@ -2,7 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<comment>IK Analyzer Config</comment>
-	<entry key="ext_dict">custom/mydict.dic;custom/single_word_low_freq.dic;custom/sougou</entry>
+	<entry key="ext_dict">custom/mydict.dic;custom/single_word_low_freq.dic;custom/sougou.dic</entry>
 	<entry key="ext_stopwords">custom/ext_stopword.dic</entry>
 	<entry key="remote_ext_dict">___ext_dict___</entry>
 	<entry key="remote_ext_stopwords">___stop_dict___</entry>
