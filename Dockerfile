@@ -1,6 +1,6 @@
 # Dockerfile
 
-FROM elasticsearch:2.3.3
+FROM elasticsearch:2.3.4
 
 MAINTAINER dxf 20160706
 
