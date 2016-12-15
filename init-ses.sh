@@ -29,7 +29,24 @@ echo "threadpool.bulk.queue_size: 500" >> $confpath
 echo "node.master: true" >> $confpath
 echo "node.data: true" >> $confpath
 echo "discovery.zen.ping.multicast.enabled: false" >> $confpath
-echo "discovery.zen.ping.unicast.hosts: [${SES_CLUSTER}]"  >> $confpath
+#need to process
+echo ${SES_CLUSTER}
+
+PRO_SES_CLUSTER=`echo ${SES_CLUSTER} | sed 's/\"//g'`
+PRO_TMP_ADDR=""
+	#split 
+IFS=', ' read -r -a array <<< "$PRO_SES_CLUSTER"
+for element in "${array[@]}"
+do
+	  PRO_TMP_ADDR="${PRO_TMP_ADDR}"'"'"${element}"'"'","	
+	  echo $PRO_TMP_ADDR
+done
+	#remove last char
+PRO_TMP_ADDR=${PRO_TMP_ADDR%?}
+PRO_SES_CLUSTER=${PRO_TMP_ADDR}
+
+echo ${PRO_SES_CLUSTER}
+echo "discovery.zen.ping.unicast.hosts: [${PRO_SES_CLUSTER}]"  >> $confpath
 		
 ikConfig=/usr/share/elasticsearch/plugins/ik/config/IKAnalyzer.cfg.xml
 ik_ext_url=${IK_EXT_URL}
